@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>楊專員 | 商業視覺設計師 & AI 輔助創意提案</title>
+    <meta name="description" content="擁有 6 年平面設計與商業視覺實戰經驗，結合 AI 輔助創意提案，為品牌打造高轉換力、具溝通力的視覺設計。">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="楊專員 | 商業視覺設計師">
+    <meta property="og:description" content="6 年商業視覺實戰經驗 × 美學為本 × AI 創新加值">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#2563EB',
+                            purple: '#7C3AED',
+                            mint: '#10B981',
+                            dark: '#1F2937',
+                            lightBg: '#F8FAFC',
+                            slate: '#64748B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & Lucide Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Noto Sans TC', 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #1F2937;
+        }
+
+        /* 網格背景紋理 */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(226, 232, 240, 0.4) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(226, 232, 240, 0.4) 1px, transparent 1px);
+        }
+
+        /* 漸層光暈 */
+        .glow-effect {
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.05) 50%, transparent 70%);
+        }
+
+        /* 打字機游標效果 */
+        .typewriter-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+            color: #2563EB;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* 玻璃擬態 */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Modal 彈窗淡入動畫 */
+        .modal-animate {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="relative overflow-x-hidden antialiased selection:bg-brand-blue selection:text-white">
+
+    <!-- Canvas 背景粒子 -->
+    <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+    <!-- 導覽列 Navigation -->
+    <header class="fixed top-0 left-0 w-full z-40 transition-all duration-300 glass-panel" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-blue to-brand-purple flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+                    Y
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold tracking-tight text-gray-900 group-hover:text-brand-blue transition-colors">楊專員 YANG</span>
+                    <span class="text-[10px] tracking-widest uppercase text-brand-slate">Visual Designer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-brand-slate">
+                <a href="#about" class="hover:text-brand-blue transition-colors nav-link">關於我</a>
+                <a href="#services" class="hover:text-brand-blue transition-colors nav-link">專業服務</a>
+                <a href="#portfolio" class="hover:text-brand-blue transition-colors nav-link">精選作品</a>
+                <a href="#process" class="hover:text-brand-blue transition-colors nav-link">設計流程</a>
+                <a href="#insights" class="hover:text-brand-blue transition-colors nav-link">設計觀點</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:flex items-center gap-4">
+                <a href="https://calendar.app.google/gZ7HZamSt8Z7EAnD8" target="_blank" rel="noopener noreferrer" 
+                   class="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-brand-blue to-brand-purple hover:shadow-lg hover:shadow-blue-500/20 hover:-translate-y-0.5 transition-all">
+                    <span>預約設計諮詢</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-700 hover:text-brand-blue focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-b border-gray-100 px-6 py-6 transition-all">
+            <div class="flex flex-col gap-4 text-sm font-medium text-brand-slate">
+                <a href="#about" class="mobile-link py-2 border-b border-gray-50">關於我</a>
+                <a href="#services" class="mobile-link py-2 border-b border-gray-50">專業服務</a>
+                <a href="#portfolio" class="mobile-link py-2 border-b border-gray-50">精選作品</a>
+                <a href="#process" class="mobile-link py-2 border-b border-gray-50">設計流程</a>
+                <a href="#insights" class="mobile-link py-2 border-b border-gray-50">設計觀點</a>
+                <a href="https://calendar.app.google/gZ7HZamSt8Z7EAnD8" target="_blank" rel="noopener noreferrer" 
+                   class="mt-2 text-center py-3 rounded-xl bg-gradient-to-r from-brand-blue to-brand-purple text-white font-semibold shadow-md">
+                    預約設計諮詢
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-20">
+
+        <!-- 01. 首頁 Hero Section -->
+        <section id="hero" class="relative min-h-[90vh] flex items-center bg-grid-pattern overflow-hidden py-20">
+            <div class="absolute inset-0 glow-effect pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="lg:col-span-7 flex flex-col items-start space-y-6">
+                    <!-- Status Badge -->
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200/60 text-xs font-medium text-brand-slate">
+                        <span class="w-2 h-2 rounded-full bg-brand-mint animate-pulse"></span>
+                        <span class="tracking-wide uppercase text-[11px] font-semibold text-gray-700">6 年實戰經驗 × AI 創意賦能</span>
+                    </div>
+
+                    <!-- Main Title with Typewriter Effect -->
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
+                        <span id="typewriter-text" class="typewriter-cursor"></span>
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <p class="text-base sm:text-lg text-brand-slate leading-relaxed max-w-2xl font-normal">
+                        以 6 年商業視覺設計經驗，結合 AI 輔助創意與嚴謹美學，將抽象行銷概念轉化為精準、吸引人且兼具品牌價值的視覺作品。
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-wrap items-center gap-4 pt-4">
+                        <a href="#portfolio" class="px-7 py-3.5 rounded-full bg-gray-900 text-white font-medium text-sm hover:bg-brand-blue hover:shadow-lg hover:shadow-blue-500/20 transition-all flex items-center gap-2">
+                            <span>探索精選作品</span>
+                            <i data-lucide="sparkles" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://calendar.app.google/gZ7HZamSt8Z7EAnD8" target="_blank" rel="noopener noreferrer" 
+                           class="px-7 py-3.5 rounded-full bg-white border border-gray-200 text-gray-800 font-medium text-sm hover:border-brand-blue hover:text-brand-blue transition-all flex items-center gap-2 shadow-sm">
+                            <span>預約設計諮詢</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Artwork Mosaic -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none grid grid-cols-2 gap-4 p-4 rounded-3xl bg-white/60 border border-gray-200/80 shadow-xl backdrop-blur-md">
+                        <!-- Card 1 -->
+                        <div class="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md bg-gray-100">
+                            <!-- TODO: 替換為實際商業 Banner 圖片 -->
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="商業廣宣 Banner 專案" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
+                                <span class="text-[10px] uppercase font-bold text-brand-mint">Commercial Banner</span>
+                                <span class="text-xs font-semibold">農特產品廣宣 Banner</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md bg-gray-100 mt-6">
+                            <!-- TODO: 替換為實際海報圖片 -->
+                            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80" alt="活動行銷海報專案" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
+                                <span class="text-[10px] uppercase font-bold text-brand-purple">Poster Design</span>
+                                <span class="text-xs font-semibold">品牌中秋禮盒海報</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md bg-gray-100 -mt-6">
+                            <!-- TODO: 替換為實際風格 DM 圖片 -->
+                            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80" alt="風格 DM 專案" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
+                                <span class="text-[10px] uppercase font-bold text-brand-blue">DM & Packaging</span>
+                                <span class="text-xs font-semibold">農漁產品風格 DM</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 (AI Visual Experiment) -->
+                        <div class="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md bg-gray-100">
+                            <!-- TODO: 替換為實際 AI 視覺實驗圖片 -->
+                            <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80" alt="AI 輔助視覺提案" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
+                                <span class="text-[10px] uppercase font-bold text-pink-400">AI Concept</span>
+                                <span class="text-xs font-semibold">AI 輔助品牌概念提案</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <a href="#about" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400 hover:text-brand-blue transition-colors">
+                <span class="text-[10px] tracking-widest uppercase font-medium">Scroll Down</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 animate-bounce"></i>
+            </a>
+        </section>
+
+        <!-- 02. 關於我 About Me -->
+        <section id="about" class="py-24 bg-brand-lightBg border-y border-gray-100">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-blue">About Me</span>
+                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 mt-2">設計背景與競爭優勢</h2>
+                    </div>
+                    <p class="text-sm text-brand-slate max-w-md">
+                        畢業於佛光大學產品與媒體設計學系，目前任職於農金資訊股份有限公司美編設計專員。
+                    </p>
+                </div>
+
+                <!-- Bio & Philosophy Split -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+                    <div class="lg:col-span-5 space-y-6 text-brand-slate leading-relaxed">
+                        <h3 class="text-2xl font-bold text-gray-900 leading-snug">
+                            「好的設計不只吸睛，更能傳遞品牌價值與觸動人心。」
+                        </h3>
+                        <p>
+                            我是楊專員，擁有 <strong class="text-gray-900 font-semibold">6 年紮實的平面設計與商業視覺實戰經驗</strong>。我專注於將複雜的商業訊息轉化為具吸引力、有溫度的視覺語言。從電商廣宣 Banner、風格 DM 設計到大型海報與展場視覺，我始終以使用者體驗與品牌商業目標為核心，打造兼具視覺美感與行銷溝通力的設計作品。
+                        </p>
+                        <p>
+                            我相信，真正有價值的視覺設計不只是將畫面做得漂亮，而是理解品牌想傳遞的訊息，找到最適合的視覺語言，讓每一個設計細節都能為溝通與品牌加分。
+                        </p>
+                    </div>
+
+                    <!-- Personal Photo -->
+                    <div class="lg:col-span-3 relative mx-auto w-full max-w-xs">
+                        <div class="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-brand-blue/15 via-brand-purple/10 to-brand-mint/20 blur-xl"></div>
+                        <div class="relative overflow-hidden rounded-[2rem] border border-white bg-white p-2 shadow-xl shadow-slate-900/10">
+                            <img src="img/dog.webp" alt="我的照片" loading="lazy" class="aspect-[4/5] w-full rounded-[1.5rem] object-cover object-center">
+                            <div class="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-lg backdrop-blur-md">
+                                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-blue">A little inspiration</p>
+                                <p class="mt-1 text-sm font-semibold text-gray-900">設計靈感，來自生活日常</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stat Highlight Box -->
+                    <div class="lg:col-span-4 grid grid-cols-2 gap-4">
+                        <div class="p-6 rounded-2xl bg-white border border-gray-200/80 shadow-sm">
+                            <span class="text-3xl font-extrabold text-brand-blue block mb-1">6+ 年</span>
+                            <span class="text-xs font-semibold text-gray-700 block mb-1">產業視覺經驗</span>
+                            <span class="text-[11px] text-brand-slate">深耕農業行銷與商業廣宣領域</span>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-white border border-gray-200/80 shadow-sm">
+                            <span class="text-3xl font-extrabold text-brand-purple block mb-1">4 大</span>
+                            <span class="text-xs font-semibold text-gray-700 block mb-1">核心設計模組</span>
+                            <span class="text-[11px] text-brand-slate">Banner / 海報 / DM / AI提案</span>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-white border border-gray-200/80 shadow-sm col-span-2">
+                            <div class="flex items-center gap-3 mb-2">
+                                <i data-lucide="graduation-cap" class="w-5 h-5 text-brand-blue"></i>
+                                <span class="text-xs font-semibold text-gray-900">佛光大學 產品與媒體設計學系</span>
+                            </div>
+                            <p class="text-[11px] text-brand-slate">兼具產品立體造型思維與媒體視覺傳播能力，編排邏輯嚴謹。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 Core Competencies Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-2xl bg-white border border-gray-200/80 hover:border-brand-blue transition-all group">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="briefcase" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="text-base font-bold text-gray-900 mb-2">01｜產業實戰溝通</h4>
+                        <p class="text-xs text-brand-slate leading-relaxed">
+                            長期深耕農業行銷與商業廣宣，熟悉禮盒包裝與活動視覺規範，精準轉化行銷概念。
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white border border-gray-200/80 hover:border-brand-purple transition-all group">
+                        <div class="w-10 h-10 rounded-xl bg-purple-50 text-brand-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="layers" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="text-base font-bold text-gray-900 mb-2">02｜跨領域美學邏輯</h4>
+                        <p class="text-xs text-brand-slate leading-relaxed">
+                            融合產品設計的空間構造與媒體傳播資訊層級，使印刷品與數位視覺兼具質感與閱讀性。
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white border border-gray-200/80 hover:border-brand-blue transition-all group">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="layout" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="text-base font-bold text-gray-900 mb-2">03｜全方位平面規劃</h4>
+                        <p class="text-xs text-brand-slate leading-relaxed">
+                            精準調配 Banner 比例、DM 編排動線與大型海報視覺，重視最終產出品質與媒介契合度。
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white border border-gray-200/80 hover:border-brand-mint transition-all group">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-brand-mint flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="cpu" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="text-base font-bold text-gray-900 mb-2">04｜AI 輔助靈感創新</h4>
+                        <p class="text-xs text-brand-slate leading-relaxed">
+                            運用 AI 探索前期概念與風格，結合專業設計手藝調整細節，有效提升提案效率與視覺品質。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. 專業服務 Services -->
+        <section id="services" class="py-24 bg-white relative">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-20">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-blue">Services</span>
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 mt-2 mb-4">
+                        AI 靈感 × 專業美學：重塑品牌視覺的新世代解決方案
+                    </h2>
+                    <p class="text-sm text-brand-slate leading-relaxed">
+                        在快速變化的數位時代，視覺設計不僅需要美感，更需要理解品牌定位、行銷目標與使用者需求。我將 AI 輔助創意技術與 6 年平面設計實務經驗相結合，協助品牌建立清晰、一致且具有辨識度的視覺形象。
+                    </p>
+                </div>
+
+                <!-- Services Grid (5 Items) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="p-8 rounded-3xl bg-brand-lightBg border border-gray-200/60 hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-brand-blue mb-6">
+                            <i data-lucide="image" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">01｜商業廣宣 Banner 設計</h3>
+                        <p class="text-xs text-brand-slate leading-relaxed">
+                            針對官網首頁、電商活動、品牌宣傳及數位行銷需求，規劃清晰資訊層級、吸睛視覺焦點與符合規格（如 1920x791、1920x720 等）的專業設計。
+                        </p>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="p-8 rounded-3xl bg-brand-lightBg border border-gray-200/60 hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-brand-purple mb-6">
+                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">02｜行銷海報與活動視覺</h3>
+                        <p class="text-xs text-brand-slate leading-relaxed">
+                            從活動主題、視覺概念到整體版面設計，打造強烈辨識度的活動形象，讓行銷訊息在短時間內精準被看見與理解。
+                        </p>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="p-8 rounded-3xl bg-brand-lightBg border border-gray-200/60 hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-brand-blue mb-6">
+                            <i data-lucide="book-open" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">03｜風格 DM 與產品行銷設計</h3>
+                        <p class="text-xs text-brand-slate leading-relaxed">
+                            整合產品特色、文案資訊與圖片素材，規劃順暢的閱讀動線，打造兼具美感與商業溝通力的宣傳摺頁與銷售 DM。
+                        </p>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="p-8 rounded-3xl bg-brand-lightBg border border-gray-200/60 hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-brand-purple mb-6">
+                            <i data-lucide="palette" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">04｜品牌視覺與行銷素材延伸</h3>
+                        <p class="text-xs text-brand-slate leading-relaxed">
+                            依據品牌定位與既有視覺規範，延伸各式實體印刷品與數位宣傳素材，維持整體品牌形象的高高度一致性與專業質感。
+                        </p>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="p-8 rounded-3xl bg-brand-lightBg border border-gray-200/60 hover:shadow-xl hover:-translate-y-1 transition-all lg:col-span-2">
+                        <div class="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-brand-mint mb-6">
+                            <i data-lucide="sparkles" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">05｜AI 輔助視覺提案與創意開發</h3>
+                        <p class="text-xs text-brand-slate leading-relaxed">
+                            運用 AI 工具進行前期創意探索、風格發想與視覺模擬，大幅加速前置溝通效率；再由專業設計手藝優化構圖、色彩與精緻細節，提供兼具創新與落地可行性的最佳方案。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Brand Value Proposition -->
+                <div class="mt-16 p-8 rounded-3xl bg-gradient-to-r from-gray-900 to-slate-800 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+                    <div class="space-y-2">
+                        <h4 class="text-lg font-bold">我如何為您的品牌創造價值？</h4>
+                        <p class="text-xs text-gray-300">精準溝通 ｜ 高效創意 ｜ 專業落地 ｜ 品牌一致性</p>
+                    </div>
+                    <a href="https://calendar.app.google/gZ7HZamSt8Z7EAnD8" target="_blank" rel="noopener noreferrer" 
+                       class="px-6 py-3 rounded-full bg-white text-gray-900 text-xs font-bold hover:bg-brand-blue hover:text-white transition-all shrink-0">
+                        立即預約專案諮詢
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. 精選作品 Selected Works -->
+        <section id="portfolio" class="py-24 bg-brand-lightBg">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-blue">Selected Works</span>
+                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 mt-2">精選視覺作品集</h2>
+                    </div>
+
+                    <!-- Category Filter Tabs -->
+                    <div class="flex flex-wrap gap-2 text-xs font-medium" id="portfolio-tabs">
+                        <button class="tab-btn px-4 py-2 rounded-full bg-gray-900 text-white transition-all" data-category="all">全部</button>
+                        <button class="tab-btn px-4 py-2 rounded-full bg-white border border-gray-200 text-brand-slate hover:border-brand-blue transition-all" data-category="banner">廣宣 Banner</button>
+                        <button class="tab-btn px-4 py-2 rounded-full bg-white border border-gray-200 text-brand-slate hover:border-brand-blue transition-all" data-category="poster">海報與活動</button>
+                        <button class="tab-btn px-4 py-2 rounded-full bg-white border border-gray-200 text-brand-slate hover:border-brand-blue transition-all" data-category="dm">風格 DM</button>
+                        <button class="tab-btn px-4 py-2 rounded-full bg-white border border-gray-200 text-brand-slate hover:border-brand-blue transition-all" data-category="agri">農漁產品視覺</button>
+                        <button class="tab-btn px-4 py-2 rounded-full bg-white border border-gray-200 text-brand-slate hover:border-brand-blue transition-all" data-category="ai">AI 創意實驗</button>
+                    </div>
+                </div>
+
+                <!-- Works Grid (Asymmetric Layout) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+                    
+                    <!-- Item 1: Banner -->
+                    <div class="portfolio-item group relative rounded-3xl overflow-hidden bg-white border border-gray-200/80 shadow-sm cursor-pointer" 
+                         data-category="banner" 
+                         onclick="openModal('專案：彰化區漁會 官網廣宣 Banner', '商業廣宣 Banner', '配合漁會中秋海陸雙饗禮盒推廣，製作 1920x720px 高畫質官網 Banner。', '以棚拍質感產品圖為核心，調配符合電商視線的資訊層次。', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80')">
+                        <div class="aspect-[16/10] overflow-hidden bg-gray-100">
+                            <!-- TODO: 替換圖片路徑 e.g., assets/images/banner-01.jpg -->
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="彰化區漁會 官網 Banner" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold uppercase text-brand-blue tracking-wider">商業廣宣 Banner</span>
+                            <h3 class="text-base font-bold text-gray-900 mt-1 group-hover:text-brand-blue transition-colors">彰化區漁會 中秋海陸雙饗 Banner</h3>
+                            <p class="text-xs text-brand-slate mt-2 line-clamp-2">官網規格 1920x720px，聚焦產品棚拍質感與優惠資訊編排。</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Agri / Poster -->
+                    <div class="portfolio-item group relative rounded-3xl overflow-hidden bg-white border border-gray-200/80 shadow-sm cursor-pointer" 
+                         data-category="agri poster" 
+                         onclick="openModal('專案：「柚夠澎派」麻豆與斗六青農行銷海報', '農漁產品視覺 / 海報', '打造 1040x1300px 行銷宣傳海報，推廣在地優質柚子禮盒。', '結合簡約設計感與節慶歡樂氛圍，突出「柚夠澎派」核心標語。', 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80')">
+                        <div class="aspect-[16/10] overflow-hidden bg-gray-100">
+                            <!-- TODO: 替換圖片路徑 -->
+                            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80" alt="柚夠澎派海報" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold uppercase text-brand-purple tracking-wider">農漁產品 / 海報</span>
+                            <h3 class="text-base font-bold text-gray-900 mt-1 group-hover:text-brand-purple transition-colors">麻豆&斗六青農「柚夠澎派」宣傳海報</h3>
+                            <p class="text-xs text-brand-slate mt-2 line-clamp-2">1040x1300px 規格，兼具質感與行銷張力的宣傳海報。</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: DM -->
+                    <div class="portfolio-item group relative rounded-3xl overflow-hidden bg-white border border-gray-200/80 shadow-sm cursor-pointer" 
+                         data-category="dm" 
+                         onclick="openModal('專案：精緻農特產品風格摺頁 DM', '風格 DM 設計', '設計三折頁風格 DM，清晰整理各項嚴選農特產品規格與訂購資訊。', '採用清爽版面配置，提升產品閱讀舒適度與購買慾望。', 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80')">
+                        <div class="aspect-[16/10] overflow-hidden bg-gray-100">
+                            <!-- TODO: 替換圖片路徑 -->
+                            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80" alt="農特產品摺頁 DM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold uppercase text-brand-blue tracking-wider">風格 DM 設計</span>
+                            <h3 class="text-base font-bold text-gray-900 mt-1 group-hover:text-brand-blue transition-colors">嚴選農特產品 風格行銷 DM</h3>
+                            <p class="text-xs text-brand-slate mt-2 line-clamp-2">高閱讀性版面結構，流暢引導消費者了解產品細節。</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: AI Concept -->
+                    <div class="portfolio-item group relative rounded-3xl overflow-hidden bg-white border border-gray-200/80 shadow-sm cursor-pointer" 
+                         data-category="ai" 
+                         onclick="openModal('實驗專案：AI 輔助包裝視覺概念探索', 'AI 創意實驗', '探索未來質感包裝視覺，運用 Midjourney 進行多維度風格實驗。', '以生成式 AI 加速前期風格確立，再透過 Photoshop 精修編排。', 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1200&q=80')">
+                        <div class="aspect-[16/10] overflow-hidden bg-gray-100">
+                            <!-- TODO: 替換圖片路徑 -->
+                            <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80" alt="AI 包裝概念" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold uppercase text-brand-mint tracking-wider">AI 創意實驗</span>
+                            <h3 class="text-base font-bold text-gray-900 mt-1 group-hover:text-brand-mint transition-colors">AI 輔助品牌包裝視覺提案實驗</h3>
+                            <p class="text-xs text-brand-slate mt-2 line-clamp-2">前期風格快速驗證，結合設計手藝產出之概念提案。</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5: Agri / Banner -->
+                    <div class="portfolio-item group relative rounded-3xl overflow-hidden bg-white border border-gray-200/80 shadow-sm cursor-pointer" 
+                         data-category="agri banner" 
+                         onclick="openModal('專案：鮮果系列（芒果/水蜜桃）包裝替換與宣傳', '農漁產品 / Banner', '優化鮮果禮盒呈現，將原包裝替換為素面牛皮紙箱質感。', '呈現簡約、無過度加工的永續農產質感。', 'https://images.unsplash.com/photo-1534531141161-e41d133a4bcd?auto=format&fit=crop&w=1200&q=80')">
+                        <div class="aspect-[16/10] overflow-hidden bg-gray-100">
+                            <!-- TODO: 替換圖片路徑 -->
+                            <img src="https://images.unsplash.com/photo-1534531141161-e41d133a4bcd?auto=format&fit=crop&w=800&q=80" alt="鮮果禮盒包裝視覺" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold uppercase text-brand-purple tracking-wider">農漁產品視覺</span>
+                            <h3 class="text-base font-bold text-gray-900 mt-1 group-hover:text-brand-purple transition-colors">頂級鮮果禮盒 牛皮紙箱質感包裝修圖</h3>
+                            <p class="text-xs text-brand-slate mt-2 line-clamp-2">合成與圖像修飾，展現自然簡約的果品高質感。</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 6: Poster / Event -->
+                    <div class="portfolio-item group relative rounded-3xl overflow-hidden bg-white border border-gray-200/80 shadow-sm cursor-pointer" 
+                         data-category="poster" 
+                         onclick="openModal('專案：「最後五分鐘」倒數活動舉牌與宣傳視覺', '海報與活動視覺', '為大型活動設計緊張刺激感兼具美感的倒數計時舉牌與主視覺。', '運用極簡字型與強烈色彩對比，提升現場與畫面渲染力。', 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80')">
+                        <div class="aspect-[16/10] overflow-hidden bg-gray-100">
+                            <!-- TODO: 替換圖片路徑 -->
+                            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80" alt="活動舉牌視覺" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold uppercase text-brand-blue tracking-wider">海報與活動視覺</span>
+                            <h3 class="text-base font-bold text-gray-900 mt-1 group-hover:text-brand-blue transition-colors">「最後五分鐘」活動倒數圓形/長方形舉牌</h3>
+                            <p class="text-xs text-brand-slate mt-2 line-clamp-2">簡約有設計感，強化現場緊張刺激氛圍。</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 05. 設計流程 Design Process -->
+        <section id="process" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="text-center max-w-2xl mx-auto mb-20">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-blue">Design Process</span>
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 mt-2">嚴謹而高效的 5 步工作流程</h2>
+                    <p class="text-sm text-brand-slate mt-2">從需求理解到最終交付，確保專案進度與視覺品質兼備。</p>
+                </div>
+
+                <!-- Process Steps Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-6 relative">
+                    <!-- Step 1 -->
+                    <div class="p-6 rounded-2xl bg-brand-lightBg border border-gray-200/60 relative group hover:border-brand-blue transition-all">
+                        <span class="text-xs font-extrabold text-brand-blue tracking-widest block mb-4">STEP 01</span>
+                        <h3 class="text-base font-bold text-gray-900 mb-2">Discover 理解需求</h3>
+                        <p class="text-xs text-brand-slate leading-relaxed">釐清品牌定位、目標受眾、專案目的與實際發布情境。</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="p-6 rounded-2xl bg-brand-lightBg border border-gray-200/60 relative group hover:border-brand-purple transition-all">
+                        <span class="text-xs font-extrabold text-brand-purple tracking-widest block mb-4">STEP 02</span>
+                        <h3 class="text-base font-bold text-gray-900 mb-2">Define 確立方向</h3>
+                        <p class="text-xs text-brand-slate leading-relaxed">整理資訊層級、視覺調性、色彩基調與核心訊息。</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="p-6 rounded-2xl bg-brand-lightBg border border-gray-200/60 relative group hover:border-brand-mint transition-all">
+                        <span class="text-xs font-extrabold text-brand-mint tracking-widest block mb-4">STEP 03</span>
+                        <h3 class="text-base font-bold text-gray-900 mb-2">Explore 創意探索</h3>
+                        <p class="text-xs text-brand-slate leading-relaxed">結合設計經驗與 AI 工具，快速發想並測試視覺概念。</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="p-6 rounded-2xl bg-brand-lightBg border border-gray-200/60 relative group hover:border-brand-blue transition-all">
+                        <span class="text-xs font-extrabold text-brand-blue tracking-widest block mb-4">STEP 04</span>
+                        <h3 class="text-base font-bold text-gray-900 mb-2">Design 設計執行</h3>
+                        <p class="text-xs text-brand-slate leading-relaxed">進行版面構圖、字型編排、色彩微調與圖像細節修飾。</p>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="p-6 rounded-2xl bg-brand-lightBg border border-gray-200/60 relative group hover:border-brand-purple transition-all">
+                        <span class="text-xs font-extrabold text-brand-purple tracking-widest block mb-4">STEP 05</span>
+                        <h3 class="text-base font-bold text-gray-900 mb-2">Deliver 成果交付</h3>
+                        <p class="text-xs text-brand-slate leading-relaxed">提供符合印刷規範或數位規格的完整檔案格式。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06. 設計觀點 Insights -->
+        <section id="insights" class="py-24 bg-brand-lightBg border-t border-gray-100">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-blue">Insights</span>
+                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 mt-2">設計觀點與實務思考</h2>
+                    </div>
+                    <p class="text-sm text-brand-slate max-w-md">分享商業視覺排版、行銷動線與 AI 輔助設計的個人觀點。</p>
+                </div>
+
+                <!-- Articles Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Article 1 -->
+                    <article class="p-8 rounded-3xl bg-white border border-gray-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase text-brand-blue">Commercial Banner</span>
+                            <h3 class="text-base font-bold text-gray-900 mt-2 mb-3">好的商業 Banner 如何建立清晰的視覺焦點？</h3>
+                            <p class="text-xs text-brand-slate leading-relaxed">分析電商與官網 Banner 在首 3 秒吸引目光的黃金法則，探討文字階層與圖像空間的比重配置。</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-brand-slate">
+                            <span>閱讀時間 3 min</span>
+                            <span class="text-brand-blue font-semibold">示範觀點</span>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="p-8 rounded-3xl bg-white border border-gray-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase text-brand-purple">DM & Print</span>
+                            <h3 class="text-base font-bold text-gray-900 mt-2 mb-3">風格 DM 設計如何兼顧資訊完整度與閱讀體驗？</h3>
+                            <p class="text-xs text-brand-slate leading-relaxed">當產品資訊繁複時，如何運用留白、網格與視覺引導線，讓讀者輕鬆接收關鍵行銷訊息。</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-brand-slate">
+                            <span>閱讀時間 4 min</span>
+                            <span class="text-brand-purple font-semibold">示範觀點</span>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="p-8 rounded-3xl bg-white border border-gray-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase text-brand-mint">AI Design Tool</span>
+                            <h3 class="text-base font-bold text-gray-900 mt-2 mb-3">AI 如何協助平面設計師進行前期創意發想？</h3>
+                            <p class="text-xs text-brand-slate leading-relaxed">探討生成式 AI 在風格探索與概念測試的實務應用，以及設計師如何保留不可替代的美學判斷。</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-brand-slate">
+                            <span>閱讀時間 5 min</span>
+                            <span class="text-brand-mint font-semibold">示範觀點</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 07. 聯絡與預約 Contact Section -->
+        <section id="contact" class="py-24 bg-white relative overflow-hidden">
+            <div class="max-w-5xl mx-auto px-6 text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-brand-blue text-xs font-semibold mb-6">
+                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                    <span>Ready to Collaborate</span>
+                </div>
+                
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 mb-6">
+                    讓好的創意，成為品牌被看見的起點。
+                </h2>
+                
+                <p class="text-base text-brand-slate max-w-2xl mx-auto mb-10 leading-relaxed">
+                    無論是全新的品牌視覺規劃、產品行銷素材，或是正在尋找更適合的視覺呈現方式，都歡迎交流想法。期待透過設計與創意，將您的需求轉化為更具吸引力與辨識度的視覺成果。
+                </p>
+
+                <div class="mb-10">
+                    <p class="text-sm font-semibold text-gray-700 mb-4">在社群上找到我</p>
+                    <div class="flex items-center justify-center gap-3">
+                        <a href="https://line.me/ti/p/2cuoNdOCR2" target="_blank" rel="noopener noreferrer" aria-label="LINE" title="LINE" class="w-12 h-12 rounded-full border border-gray-200 bg-white text-[#06C755] shadow-sm hover:-translate-y-1 hover:shadow-md transition-all flex items-center justify-center">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" aria-label="Facebook（連結待補）" title="Facebook（連結待補）" class="w-12 h-12 rounded-full border border-gray-200 bg-white text-[#1877F2] shadow-sm hover:-translate-y-1 hover:shadow-md transition-all flex items-center justify-center">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" aria-label="LinkedIn（連結待補）" title="LinkedIn（連結待補）" class="w-12 h-12 rounded-full border border-gray-200 bg-white text-[#0A66C2] shadow-sm hover:-translate-y-1 hover:shadow-md transition-all flex items-center justify-center">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://github.com/HowardNTUST" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" class="w-12 h-12 rounded-full border border-gray-200 bg-white text-gray-900 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all flex items-center justify-center">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mb-10">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhpQkEEWUfA6nC3mCaoQrEnHB9nB9d1jR6xXIjkOroOKzBWA/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-full border border-brand-blue/20 bg-blue-50 px-6 py-3 text-sm font-semibold text-brand-blue hover:bg-blue-100 transition-colors">
+                        <i data-lucide="clipboard-pen-line" class="w-4 h-4"></i>
+                        <span>填寫需求表單</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <!-- Google Calendar Booking Link -->
+                    <a href="https://calendar.app.google/gZ7HZamSt8Z7EAnD8" target="_blank" rel="noopener noreferrer" 
+                       class="w-full sm:w-auto px-9 py-4 rounded-full bg-gradient-to-r from-brand-blue to-brand-purple text-white font-bold text-sm shadow-xl shadow-blue-500/20 hover:scale-105 transition-all flex items-center justify-center gap-2">
+                        <span>預約設計諮詢</span>
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="mt-12 text-xs text-brand-slate flex items-center justify-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-mint"></span>
+                    <span>開放 2026 Q2 / Q3 商業視覺與品牌設計專案預約</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+        <!-- Modal Lightbox (作品詳情視窗) -->
+        <div id="portfolio-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center overflow-y-auto p-4 sm:p-6 bg-gray-900/75 backdrop-blur-md opacity-0 pointer-events-none modal-animate">
+            <div class="relative my-auto flex max-h-[calc(100dvh-2rem)] w-full max-w-5xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl">
+                <!-- Modal Header -->
+                <div class="flex shrink-0 items-center justify-between gap-4 border-b border-gray-100 p-4 sm:p-6">
+                    <div class="flex flex-col">
+                        <span id="modal-category" class="text-[10px] font-bold uppercase text-brand-blue">Category</span>
+                        <h3 id="modal-title" class="text-lg font-bold text-gray-900">Project Title</h3>
+                    </div>
+                    <button onclick="closeModal()" class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <!-- Modal Body -->
+                <div class="min-h-0 space-y-5 overflow-y-auto p-4 sm:p-6">
+                    <div class="flex max-h-[45vh] w-full items-center justify-center overflow-hidden rounded-2xl bg-gray-100">
+                        <img id="modal-img" src="" alt="Detail" class="block max-h-[45vh] w-full object-contain">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-xs font-bold uppercase text-gray-400 mb-1">專案目標與簡介</h4>
+                            <p id="modal-desc" class="text-xs text-brand-slate leading-relaxed">...</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold uppercase text-gray-400 mb-1">設計概念與重點</h4>
+                            <p id="modal-concept" class="text-xs text-brand-slate leading-relaxed">...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- 08. 頁尾 Footer -->
+    <footer class="bg-brand-dark text-white py-12 border-t border-gray-800 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-blue to-brand-purple flex items-center justify-center font-bold text-sm">
+                    Y
+                </div>
+                <span class="text-sm font-semibold tracking-wider">楊專員 YANG｜Commercial Visual Designer</span>
+            </div>
+
+            <div class="flex gap-6 text-xs text-gray-400">
+                <a href="#about" class="hover:text-white transition-colors">關於我</a>
+                <a href="#services" class="hover:text-white transition-colors">服務項目</a>
+                <a href="#portfolio" class="hover:text-white transition-colors">精選作品</a>
+                <a href="https://calendar.app.google/gZ7HZamSt8Z7EAnD8" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">預約諮詢</a>
+            </div>
+
+            <div class="text-xs text-gray-500">
+                © 2026 YANG. All rights reserved. Designed for Personal Branding.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. 打字機效果 (Typewriter Effect)
+        const typewriterText = "美學為本，AI 賦能——打造高轉換力的品牌視覺。";
+        const typewriterEl = document.getElementById("typewriter-text");
+        let i = 0;
+
+        function typeWriter() {
+            if (i < typewriterText.length) {
+                typewriterEl.textContent += typewriterText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 70);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(typeWriter, 300);
+        });
+
+        // 2. Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // 3. Portfolio Category Filter
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.getAttribute('data-category');
+
+                // Active Button Styling
+                tabBtns.forEach(b => {
+                    b.classList.remove('bg-gray-900', 'text-white');
+                    b.classList.add('bg-white', 'text-brand-slate');
+                });
+                btn.classList.remove('bg-white', 'text-brand-slate');
+                btn.classList.add('bg-gray-900', 'text-white');
+
+                // Filter Items
+                portfolioItems.forEach(item => {
+                    const itemCat = item.getAttribute('data-category');
+                    if (category === 'all' || itemCat.includes(category)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 4. Portfolio Lightbox Modal
+        const modal = document.getElementById('portfolio-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalCategory = document.getElementById('modal-category');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalConcept = document.getElementById('modal-concept');
+        const modalImg = document.getElementById('modal-img');
+
+        function openModal(title, category, desc, concept, imgSrc) {
+            modalTitle.textContent = title;
+            modalCategory.textContent = category;
+            modalDesc.textContent = desc;
+            modalConcept.textContent = concept;
+            modalImg.src = imgSrc;
+
+            modal.classList.remove('hidden', 'pointer-events-none');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden', 'pointer-events-none');
+            }, 300);
+        }
+
+        // Close Modal on Escape
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // 5. Lightweight Canvas Background Nodes Animation
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles;
+
+        function initCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            particles = Array.from({ length: 30 }, () => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                radius: Math.random() * 2 + 1
+            }));
+        }
+
+        function drawCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = '#2563EB';
+            ctx.strokeStyle = 'rgba(37, 99, 235, 0.08)';
+
+            particles.forEach((p, index) => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                for (let j = index + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(drawCanvas);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        drawCanvas();
+    </script>
+</body>
+</html>

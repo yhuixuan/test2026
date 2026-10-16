@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>森山步道 | 專業登山健行行程推廣與報名</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: {
+                            50: '#f2f8f4',
+                            100: '#d9ebdff',
+                            600: '#2e6f40',
+                            700: '#235832',
+                            800: '#1b4427',
+                            900: '#14341e',
+                        },
+                        earth: {
+                            100: '#f5efe6',
+                            600: '#a3704c',
+                            700: '#825637',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-forest-600 selection:text-white">
+
+    <!-- 1. 頂部導覽列（Navbar） -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- 品牌 Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-forest-600 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-mountain text-lg"></i>
+                    </div>
+                    <span class="text-xl font-black tracking-wider uppercase drop-shadow-md">森山步道</span>
+                </a>
+
+                <!-- 桌面版導覽連結 -->
+                <div class="hidden md:flex items-center space-x-8 font-medium">
+                    <a href="#hero" class="hover:text-forest-300 transition-colors">首頁</a>
+                    <a href="#itineraries" class="hover:text-forest-300 transition-colors">熱門行程</a>
+                    <a href="#features" class="hover:text-forest-300 transition-colors">行程特色</a>
+                    <a href="#gear" class="hover:text-forest-300 transition-colors">裝備建議</a>
+                    <a href="#about" class="hover:text-forest-300 transition-colors">關於我們</a>
+                    <a href="#register" class="bg-forest-600 hover:bg-forest-700 text-white px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">線上報名</a>
+                </div>
+
+                <!-- 手機版漢堡選單按鈕 -->
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-white focus:outline-none p-2 text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 手機版下拉選單 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-forest-900/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3 border-t border-forest-700/50 shadow-2xl">
+            <a href="#hero" class="block py-2 text-white hover:text-forest-300 border-b border-forest-800">首頁</a>
+            <a href="#itineraries" class="block py-2 text-white hover:text-forest-300 border-b border-forest-800">熱門行程</a>
+            <a href="#features" class="block py-2 text-white hover:text-forest-300 border-b border-forest-800">行程特色</a>
+            <a href="#gear" class="block py-2 text-white hover:text-forest-300 border-b border-forest-800">裝備建議</a>
+            <a href="#about" class="block py-2 text-white hover:text-forest-300 border-b border-forest-800">關於我們</a>
+            <a href="#register" class="block py-3 text-center bg-forest-600 text-white font-semibold rounded-lg shadow">線上報名</a>
+        </div>
+    </nav>
+
+    <!-- 2. 頂部大圖與標語（Hero Section） -->
+    <header id="hero" class="hero-bg min-h-screen flex items-center justify-center text-center px-4 relative">
+        <div class="max-w-4xl mx-auto space-y-6 pt-20">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-forest-600/80 text-white text-sm font-medium tracking-wide backdrop-blur-sm border border-forest-500/30">
+                <i class="fa-solid fa-compass text-forest-200"></i> 探索台灣之美 · 走向山林深處
+            </span>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight drop-shadow-lg leading-tight">
+                腳印留給群山<br><span class="text-emerald-400">感動留在心中</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto font-light drop-shadow">
+                專業登山嚮導團隊帶領，安全、深度、無痕山林體驗。從百岳大山到秘境步道，與我們一起看見最純粹的台灣山岳景色。
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a href="#itineraries" class="w-full sm:w-auto bg-forest-600 hover:bg-forest-700 text-white font-semibold px-8 py-4 rounded-xl shadow-xl hover:shadow-forest-600/30 transition-all transform hover:-translate-y-1">
+                    立即探索行程 <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#about" class="w-full sm:w-auto bg-white/10 hover:bg-white/25 text-white border border-white/30 backdrop-blur-md font-semibold px-8 py-4 rounded-xl transition-all">
+                    了解登山團隊
+                </a>
+            </div>
+            
+            <!-- 快速數據 -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 max-w-3xl mx-auto text-white">
+                <div class="bg-black/30 backdrop-blur-md p-4 rounded-xl border border-white/10">
+                    <div class="text-3xl font-black text-emerald-400">100+</div>
+                    <div class="text-sm text-gray-300">成功帶領梯次</div>
+                </div>
+                <div class="bg-black/30 backdrop-blur-md p-4 rounded-xl border border-white/10">
+                    <div class="text-3xl font-black text-emerald-400">100%</div>
+                    <div class="text-sm text-gray-300">專業證照嚮導</div>
+                </div>
+                <div class="bg-black/30 backdrop-blur-md p-4 rounded-xl border border-white/10">
+                    <div class="text-3xl font-black text-emerald-400">1,500+</div>
+                    <div class="text-sm text-gray-300">滿意山友見證</div>
+                </div>
+                <div class="bg-black/30 backdrop-blur-md p-4 rounded-xl border border-white/10">
+                    <div class="text-3xl font-black text-emerald-400">15+</div>
+                    <div class="text-sm text-gray-300">精選經典路線</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. 熱門健行行程介紹（Itineraries / Cards） -->
+    <section id="itineraries" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="text-forest-600 font-bold uppercase tracking-wider text-sm">POPULAR ROUTES</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">精選熱門健行行程</h2>
+            <div class="w-20 h-1 bg-forest-600 mx-auto rounded-full"></div>
+            <p class="text-gray-600">精心規劃的百岳與中級山路線，兼顧安全與景致，滿足不同程度登山愛好者的期待。</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- 行程卡片 1 -->
+            <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group border border-gray-100">
+                <div class="relative h-56 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="玉山主峰" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <span class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">高難度 · 百岳</span>
+                    <span class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-lg">
+                        <i class="fa-solid fa-mountain-sun mr-1"></i> 海拔 3,952m
+                    </span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-2">
+                            <span><i class="fa-regular fa-clock mr-1 text-forest-600"></i> 2天1夜</span>
+                            <span><i class="fa-solid fa-user-group mr-1 text-forest-600"></i> 成行人數：6人起</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-forest-600 transition-colors">玉山主峰登頂挑戰</h3>
+                        <p class="text-gray-600 text-sm line-clamp-2">台灣第一高峰，絕美日出雲海、壯麗圈谷地形，一生必訪的朝聖聖山路線。</p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block">每人費用</span>
+                            <span class="text-lg font-black text-forest-700">NT$ 7,800起</span>
+                        </div>
+                        <button onclick="openModal('yushan')" class="bg-forest-600 hover:bg-forest-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors shadow">
+                            查看詳情
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 行程卡片 2 -->
+            <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group border border-gray-100">
+                <div class="relative h-56 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80" alt="奇萊南華" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <span class="absolute top-4 right-4 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">中難度 · 黃金草原</span>
+                    <span class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-lg">
+                        <i class="fa-solid fa-mountain-sun mr-1"></i> 海拔 3,184m
+                    </span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-2">
+                            <span><i class="fa-regular fa-clock mr-1 text-forest-600"></i> 3天2夜</span>
+                            <span><i class="fa-solid fa-user-group mr-1 text-forest-600"></i> 成行人數：6人起</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-forest-600 transition-colors">奇萊南華黄金草原</h3>
+                        <p class="text-gray-600 text-sm line-clamp-2">天池山莊五星級享受、綿延不絕的高山大草原、能高瀑布負離子洗禮。</p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block">每人費用</span>
+                            <span class="text-lg font-black text-forest-700">NT$ 9,200起</span>
+                        </div>
+                        <button onclick="openModal('qilai')" class="bg-forest-600 hover:bg-forest-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors shadow">
+                            查看詳情
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 行程卡片 3 -->
+            <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group border border-gray-100">
+                <div class="relative h-56 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=600&q=80" alt="抹茶山聖母山莊" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <span class="absolute top-4 right-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">親民 · 網美秘境</span>
+                    <span class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-lg">
+                        <i class="fa-solid fa-mountain-sun mr-1"></i> 海拔 980m
+                    </span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-2">
+                            <span><i class="fa-regular fa-clock mr-1 text-forest-600"></i> 1天</span>
+                            <span><i class="fa-solid fa-user-group mr-1 text-forest-600"></i> 成行人數：4人起</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-forest-600 transition-colors">抹茶山 聖母山莊健行</h3>
+                        <p class="text-gray-600 text-sm line-clamp-2">礁溪超人氣抹茶山抹茶綠地毯景觀，專業嚮導帶領私房步道，吸收滿滿芬多精。</p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block">每人費用</span>
+                            <span class="text-lg font-black text-forest-700">NT$ 2,200起</span>
+                        </div>
+                        <button onclick="openModal('matcha')" class="bg-forest-600 hover:bg-forest-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors shadow">
+                            查看詳情
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 行程卡片 4 -->
+            <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group border border-gray-100">
+                <div class="relative h-56 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80" alt="合歡山群峰" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <span class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">入門百岳 · 星空雲海</span>
+                    <span class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-lg">
+                        <i class="fa-solid fa-mountain-sun mr-1"></i> 海拔 3,422m
+                    </span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-2">
+                            <span><i class="fa-regular fa-clock mr-1 text-forest-600"></i> 2天1夜</span>
+                            <span><i class="fa-solid fa-user-group mr-1 text-forest-600"></i> 成行人數：6人起</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-forest-600 transition-colors">合歡群峰百岳初體驗</h3>
+                        <p class="text-gray-600 text-sm line-clamp-2">輕鬆登入多座百岳，奇萊合歡高山杜鵑、銀河星空攝影、高山日出一次滿足。</p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block">每人費用</span>
+                            <span class="text-lg font-black text-forest-700">NT$ 6,500起</span>
+                        </div>
+                        <button onclick="openModal('hehuan')" class="bg-forest-600 hover:bg-forest-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors shadow">
+                            查看詳情
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 行程特色與服務（Features） -->
+    <section id="features" class="py-24 bg-forest-50/60 border-y border-forest-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-forest-600 font-bold uppercase tracking-wider text-sm">WHY CHOOSE US</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">專業、安全、無微不至的登山體驗</h2>
+                <div class="w-20 h-1 bg-forest-600 mx-auto rounded-full"></div>
+                <p class="text-gray-600">我們重視每一次出發，從行前訓練、高山伙食到緊急救護，提供您全方位的專業後盾。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 特色 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all border border-forest-100 flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-forest-100 text-forest-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-forest-600 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">專業嚮導領隊</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">國家級認證山域嚮導、WFR野外急救員隨隊，具備豐富應變經驗，守護您的每一步安全。</p>
+                </div>
+
+                <!-- 特色 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all border border-forest-100 flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-forest-100 text-forest-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-forest-600 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">精緻高山熱食</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">免背公糧帳篷！由專業協作團隊準備豐盛營養的高山早晚餐、暖心熱湯，補足體力再出發。</p>
+                </div>
+
+                <!-- 特色 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all border border-forest-100 flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-forest-100 text-forest-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-forest-600 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-kit-medical"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">完整安全裝備</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">配備衛星通訊器（Garmin inReach）、高山氧氣瓶、血氧機及急救醫療箱，通訊不斷線。</p>
+                </div>
+
+                <!-- 特色 4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all border border-forest-100 flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-forest-100 text-forest-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-forest-600 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">完善保險保障</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">每位隊員皆投保高山健行專屬旅行平安險及高額山域事故救援險，讓您與家人安心無憂。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 登山裝備建議清單（Gear Checklist） -->
+    <section id="gear" class="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="text-forest-600 font-bold uppercase tracking-wider text-sm">GEAR CHECKLIST</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">互動式登山裝備清單</h2>
+            <div class="w-20 h-1 bg-forest-600 mx-auto rounded-full"></div>
+            <p class="text-gray-600">出發前請核對您的裝備！您可以直接在網頁上打勾確認準備進度，輕鬆管理行李。</p>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-10 space-y-8">
+            <div class="flex items-center justify-between pb-6 border-b border-gray-100">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800">裝備準備進度</h3>
+                    <p id="progress-text" class="text-sm text-gray-500 mt-1">已完成 0 / 15 項</p>
+                </div>
+                <div class="w-32 bg-gray-200 rounded-full h-3 overflow-hidden">
+                    <div id="progress-bar" class="bg-forest-600 h-3 transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 類別一：必備衣著 -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-forest-700 flex items-center gap-2 border-b pb-2">
+                        <i class="fa-solid fa-shirt"></i> 1. 必備衣著（洋蔥式穿法）
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-1">
+                            <label for="gear-1" class="text-sm text-gray-700 cursor-pointer">排汗透氣底層衣（排汗衫）</label>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-2">
+                            <label for="gear-2" class="text-sm text-gray-700 cursor-pointer">保暖中層（刷毛衣 / 羽絨外套）</label>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-3">
+                            <label for="gear-3" class="text-sm text-gray-700 cursor-pointer">防風防水外層（Gore-Tex 外套）</label>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-4">
+                            <label for="gear-4" class="text-sm text-gray-700 cursor-pointer">排汗彈性健行褲（防潑水尤佳）</label>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-5">
+                            <label for="gear-5" class="text-sm text-gray-700 cursor-pointer">備用換洗衣物與保暖帽、手套</label>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 類別二：鞋襪與背包 -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-forest-700 flex items-center gap-2 border-b pb-2">
+                        <i class="fa-solid fa-shoe-prints"></i> 2. 鞋襪與登山背包
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-6">
+                            <label for="gear-6" class="text-sm text-gray-700 cursor-pointer">中高筒登山鞋（需已磨合防磨腳）</label>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-7">
+                            <label for="gear-7" class="text-sm text-gray-700 cursor-pointer">羊毛登山厚襪（2-3雙）</label>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-8">
+                            <label for="gear-8" class="text-sm text-gray-700 cursor-pointer">登山背包（一日遊 20-30L / 多日遊 45-60L）</label>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-9">
+                            <label for="gear-9" class="text-sm text-gray-700 cursor-pointer">背包防水背包套</label>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 類別三：裝備與工具 -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-forest-700 flex items-center gap-2 border-b pb-2">
+                        <i class="fa-solid fa-toolbox"></i> 3. 裝備與工具
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-10">
+                            <label for="gear-10" class="text-sm text-gray-700 cursor-pointer">登山杖 1-2 支（減輕膝蓋負擔）</label>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-11">
+                            <label for="gear-11" class="text-sm text-gray-700 cursor-pointer">頭燈與備用電池（夜攀日出必備）</label>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-12">
+                            <label for="gear-12" class="text-sm text-gray-700 cursor-pointer">行動電源與充電線</label>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 類別四：飲食與個人藥品 -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-forest-700 flex items-center gap-2 border-b pb-2">
+                        <i class="fa-solid fa-bottle-water"></i> 4. 補給與個人藥品
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-13">
+                            <label for="gear-13" class="text-sm text-gray-700 cursor-pointer">環保水壺 / 水袋（至少 1.5 - 2000cc）</label>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-14">
+                            <label for="gear-14" class="text-sm text-gray-700 cursor-pointer">高熱量行動糧（能量膠、堅果、巧克力）</label>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <input type="checkbox" class="gear-chk w-5 h-5 rounded text-forest-600 focus:ring-forest-500 cursor-pointer" id="gear-15">
+                            <label for="gear-15" class="text-sm text-gray-700 cursor-pointer">個人常備藥品與高山症備用藥</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 關於我們區塊 (About Us) -->
+    <section id="about" class="py-24 bg-earth-100/50 border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="text-forest-600 font-bold uppercase tracking-wider text-sm">ABOUT US</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">森山步道登山團隊</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        成立於 2018 年，由一群熱愛台灣山林的高山嚮導與荒野愛好者共同創辦。我們堅信「走入山林，找回初心」。多年來我們致力於推廣安全登山、無痕山林（LNT）教育，帶領無數嚮往山林的學員平安登頂、飽覽台灣群峰壯麗。
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 pt-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-forest-600 text-white flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-seedling text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">無痕山林</h4>
+                                <p class="text-sm text-gray-600 mt-1">愛護山林環境，落實垃圾隨身帶走。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-forest-600 text-white flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-shield-halved text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">安全第一</h4>
+                                <p class="text-sm text-gray-600 mt-1">嚴格控管師生比，隨隊專業急救裝備。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=80" alt="登山團隊合影" class="rounded-3xl shadow-2xl w-full object-cover h-[450px]">
+                    <div class="absolute -bottom-6 -left-6 bg-forest-900 text-white p-6 rounded-2xl shadow-xl hidden sm:block max-w-xs">
+                        <p class="italic text-sm text-emerald-300">“山永遠都在，準備好了就出發，讓專業陪你走得更穩、更遠。”</p>
+                        <p class="mt-2 font-bold text-right">- 總嚮導長 志明</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 線上報名表單（Registration Form） -->
+    <section id="register" class="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="text-forest-600 font-bold uppercase tracking-wider text-sm">ONLINE REGISTRATION</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">立即預約您的登山行程</h2>
+            <div class="w-20 h-1 bg-forest-600 mx-auto rounded-full"></div>
+            <p class="text-gray-600">填寫下方報名資料，我們將在 24 小時內與您聯繫並確認梯次名額與繳費資訊。</p>
+        </div>
+
+        <form id="reg-form" class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 sm:p-12 space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- 姓名 -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-bold text-gray-700">真實姓名 <span class="text-red-500">*</span></label>
+                    <input type="text" id="name" required placeholder="請輸入您的真實姓名" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-forest-600 focus:border-forest-600 outline-none transition-all">
+                </div>
+                <!-- 聯絡電話 -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-bold text-gray-700">聯絡電話 <span class="text-red-500">*</span></label>
+                    <input type="tel" id="phone" required placeholder="例如：0912-345678" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-forest-600 focus:border-forest-600 outline-none transition-all">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- 電子信箱 -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-bold text-gray-700">電子信箱 <span class="text-red-500">*</span></label>
+                    <input type="email" id="email" required placeholder="name@example.com" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-forest-600 focus:border-forest-600 outline-none transition-all">
+                </div>
+                <!-- 選擇行程 -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-bold text-gray-700">選擇行程 <span class="text-red-500">*</span></label>
+                    <select id="itinerary-select" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-forest-600 focus:border-forest-600 outline-none transition-all bg-white">
+                        <option value="">-- 請選擇欲參加的行程 --</option>
+                        <option value="玉山主峰登頂挑戰 (NT$ 7,800)">玉山主峰登頂挑戰 (2天1夜)</option>
+                        <option value="奇萊南華黄金草原 (NT$ 9,200)">奇萊南華黄金草原 (3天2夜)</option>
+                        <option value="抹茶山 聖母山莊健行 (NT$ 2,200)">抹茶山 聖母山莊健行 (1天)</option>
+                        <option value="合歡群峰百岳初體驗 (NT$ 6,500)">合歡群峰百岳初體驗 (2天1夜)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- 參加梯次 -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-bold text-gray-700">參加梯次日期 <span class="text-red-500">*</span></label>
+                    <select id="date-select" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-forest-600 focus:border-forest-600 outline-none transition-all bg-white">
+                        <option value="">-- 請選擇梯次日期 --</option>
+                        <option value="2026/05/15 - 05/16">2026/05/15 - 05/16 (春季團)</option>
+                        <option value="2026/06/10 - 06/12">2026/06/10 - 06/12 (初夏黃金團)</option>
+                        <option value="2026/07/20 - 07/21">2026/07/20 - 07/21 (暑期星空團)</option>
+                        <option value="2026/09/05 - 09/07">2026/09/05 - 09/07 (秋高氣爽團)</option>
+                    </select>
+                </div>
+                <!-- 緊急聯絡人 -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-bold text-gray-700">緊急聯絡人與電話 <span class="text-red-500">*</span></label>
+                    <input type="text" id="emergency" required placeholder="姓名與電話（必填）" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-forest-600 focus:border-forest-600 outline-none transition-all">
+                </div>
+            </div>
+
+            <!-- 飲食習慣/過敏備註 -->
+            <div class="space-y-2">
+                <label class="block text-sm font-bold text-gray-700">飲食習慣與過敏備註</label>
+                <textarea id="notes" rows="3" placeholder="例如：素食、對海鮮過敏、慢性病史等..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-forest-600 focus:border-forest-600 outline-none transition-all"></textarea>
+            </div>
+
+            <div class="pt-4 text-center">
+                <button type="submit" class="w-full sm:w-auto px-12 py-4 bg-forest-600 hover:bg-forest-700 text-white font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5">
+                    確認送出報名表單 <i class="fa-solid fa-paper-plane ml-2"></i>
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- 7. 頁尾（Footer） -->
+    <footer class="bg-forest-950 text-white pt-16 pb-12 border-t border-forest-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-forest-900">
+                <div class="space-y-4 md:col-span-1">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-forest-600 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-mountain"></i>
+                        </div>
+                        <span class="text-lg font-black tracking-wider uppercase">森山步道</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        帶領您走入台灣群山，體驗最安全、專業且難忘的登山健行旅程。
+                    </p>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-bold text-emerald-400">快速導覽</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#hero" class="hover:text-white transition-colors">首頁</a></li>
+                        <li><a href="#itineraries" class="hover:text-white transition-colors">熱門行程</a></li>
+                        <li><a href="#features" class="hover:text-white transition-colors">行程特色</a></li>
+                        <li><a href="#gear" class="hover:text-white transition-colors">裝備建議</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-bold text-emerald-400">熱門路線</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#itineraries" class="hover:text-white transition-colors">玉山主峰登頂</a></li>
+                        <li><a href="#itineraries" class="hover:text-white transition-colors">奇萊南華草原</a></li>
+                        <li><a href="#itineraries" class="hover:text-white transition-colors">聖母山莊抹茶山</a></li>
+                        <li><a href="#itineraries" class="hover:text-white transition-colors">合歡群峰百岳</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-bold text-emerald-400">聯絡我們</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="fa-solid fa-phone mr-2 text-forest-600"></i> (02) 2345-6789</li>
+                        <li><i class="fa-solid fa-envelope mr-2 text-forest-600"></i> service@foresttrail.tw</li>
+                        <li><i class="fa-solid fa-location-dot mr-2 text-forest-600"></i> 台北市信義區山林路一段88號</li>
+                    </ul>
+                    <div class="flex space-x-4 pt-2">
+                        <a href="#" class="w-9 h-9 rounded-full bg-forest-900 hover:bg-forest-600 flex items-center justify-center transition-colors text-white"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-forest-900 hover:bg-forest-600 flex items-center justify-center transition-colors text-white"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-forest-900 hover:bg-forest-600 flex items-center justify-center transition-colors text-white"><i class="fa-brands fa-line"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 text-center text-sm text-gray-500">
+                &copy; 2026 森山步道 Mountain Hiking. All rights reserved. Designed for Mountain Lovers.
+            </div>
+        </div>
+    </footer>
+
+    <!-- 行程詳細彈窗 (Modal) -->
+    <div id="itinerary-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full flex items-center justify-center transition-colors z-10 font-bold text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modal-content" class="p-8 space-y-6">
+                <!-- 動態載入詳細內容 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 自定義訊息提示 Modal -->
+    <div id="alert-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center space-y-4 shadow-2xl">
+            <div class="w-16 h-16 bg-emerald-100 text-forest-600 rounded-full flex items-center justify-center text-3xl mx-auto">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 id="alert-title" class="text-2xl font-bold text-gray-900">報名成功！</h3>
+            <p id="alert-msg" class="text-gray-600 text-sm">感謝您的填寫，我們已收到您的報名資訊，將有專人與您聯繫。</p>
+            <button onclick="closeAlert()" class="w-full py-3 bg-forest-600 hover:bg-forest-700 text-white font-semibold rounded-xl transition-colors">
+                確定
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript 互動邏輯 -->
+    <script>
+        // 導覽列滾動變色
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('bg-white', 'text-gray-800', 'shadow-md');
+            } else {
+                navbar.classList.remove('bg-white', 'text-gray-800', 'shadow-md');
+                navbar.classList.add('bg-transparent', 'text-white');
+            }
+        });
+
+        // 手機版漢堡選單切換
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 點擊選單連結後自動收起手機選單
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 裝備清單勾選與進度條互動
+        const checkboxes = document.querySelectorAll('.gear-chk');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const totalGear = checkboxes.length;
+
+        checkboxes.forEach(chk => {
+            chk.addEventListener('change', updateProgress);
+        });
+
+        function updateProgress() {
+            const checkedCount = document.querySelectorAll('.gear-chk:checked').length;
+            const percent = (checkedCount / totalGear) * 100;
+            progressBar.style.width = percent + '%';
+            progressText.textContent = `已完成 ${checkedCount} / ${totalGear} 項`;
+        }
+
+        // 行程詳細資料定義
+        const itineraryDetails = {
+            yushan: {
+                title: "玉山主峰登頂挑戰 (2天1夜)",
+                image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+                badge: "高難度 · 百岳",
+                price: "NT$ 7,800 起",
+                days: "2天1夜",
+                altitude: "海拔 3,952公尺",
+                desc: "玉山主峰為台灣第一高峰，也是東亞最高峰。本行程由專業嚮導帶領，住宿排雲山莊，挑戰日出前攻頂，沿途欣賞壯麗的懸崖峭壁與萬丈深淵，是每位登山客心中必朝聖的殿堂。",
+                schedule: [
+                    "Day 1：塔塔加登山口 -> 孟祿亭 -> 排雲山莊（夜宿排雲，適應高度）",
+                    "Day 2：排雲山莊出發 -> 玉山主峰迎日出 -> 返回登山口賦歸"
+                ]
+            },
+            qilai: {
+                title: "奇萊南華黄金草原 (3天2夜)",
+                image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80",
+                badge: "中難度 · 黃金草原",
+                price: "NT$ 9,200 起",
+                days: "3天2夜",
+                altitude: "海拔 3,184公尺",
+                desc: "奇萊南華擁有全台灣最美的高山黃金大草原。平緩好走的能高越嶺道西段，伴隨壯觀的能高瀑布與五星級天池山莊住宿，是體驗高山露營與星空銀河的最佳選擇。",
+                schedule: [
+                    "Day 1：屯原登山口 -> 雲海保線所 -> 天池山莊",
+                    "Day 2：天池山莊 -> 奇萊南峰 -> 南華山 -> 天池山莊享用高山晚餐",
+                    "Day 3：天池山莊 -> 能高瀑布 -> 返回屯原登山口"
+                ]
+            },
+            matcha: {
+                title: "抹茶山 聖母山莊健行 (1天)",
+                image: "https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=800&q=80",
+                badge: "親民 · 網美秘境",
+                price: "NT$ 2,200 起",
+                days: "1天",
+                altitude: "海拔 980公尺",
+                desc: "位於宜蘭礁溪的聖母山莊步道，因山景翠綠如抹茶冰淇淋而爆紅。沿途林蔭蔽天、溪水潺潺，登上觀景台視野遼闊，遠眺蘭陽平原與太平洋，是放鬆身心的絕佳一日健行。",
+                schedule: [
+                    "Day 1：五峰旗瀑布風景區集合 -> 沿五峰旗林道健行 -> 聖母山莊登頂觀景 -> 輕鬆下山賦歸"
+                ]
+            },
+            hehuan: {
+                title: "合歡群峰百岳初體驗 (2天1夜)",
+                image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80",
+                badge: "入門百岳 · 雲海星空",
+                price: "NT$ 6,500 起",
+                days: "2天1夜",
+                altitude: "海拔 3,422公尺",
+                desc: "合歡山群峰交通便利且展望極佳，是最適合初次挑戰百岳的路線。沿途可輕鬆登上合歡東峰、合歡主峰或石門山，夜晚更能欣賞璀璨銀河與高山雲海。",
+                schedule: [
+                    "Day 1：合歡山武嶺集合 -> 石門山健行 -> 合歡尖山夕陽欣賞 -> 入住高山景觀山莊",
+                    "Day 2：合歡東峰日出健行 -> 漫步高山杜鵑/箭竹原 -> 午後賦歸"
+                ]
+            }
+        };
+
+        // 開啟 Modal
+        function openModal(key) {
+            const data = itineraryDetails[key];
+            if (!data) return;
+            
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="relative h-64 rounded-2xl overflow-hidden shadow-md mb-4">
+                    <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover">
+                    <span class="absolute top-4 right-4 bg-forest-600 text-white text-xs font-bold px-3 py-1 rounded-full">${data.badge}</span>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <span><i class="fa-regular fa-clock mr-1 text-forest-600"></i> ${data.days}</span>
+                        <span><i class="fa-solid fa-mountain-sun mr-1 text-forest-600"></i> ${data.altitude}</span>
+                    </div>
+                    <h3 class="text-2xl font-black text-gray-900">${data.title}</h3>
+                    <p class="text-gray-700 text-sm leading-relaxed">${data.desc}</p>
+                    <div class="pt-2">
+                        <h4 class="font-bold text-gray-900 mb-2"><i class="fa-solid fa-list-check mr-2 text-forest-600"></i>每日行程簡介</h4>
+                        <ul class="space-y-2 text-sm text-gray-600 bg-forest-50/50 p-4 rounded-xl border border-forest-100">
+                            ${data.schedule.map(s => `<li>• ${s}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <div>
+                            <span class="text-xs text-gray-400 block">行程費用</span>
+                            <span class="text-xl font-black text-forest-700">${data.price}</span>
+                        </div>
+                        <button onclick="closeModal(); scrollToRegister('${data.title}');" class="bg-forest-600 hover:bg-forest-700 text-white font-semibold px-6 py-3 rounded-xl shadow transition-colors">
+                            立即報名此行程
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.getElementById('itinerary-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('itinerary-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function scrollToRegister(title) {
+            const select = document.getElementById('itinerary-select');
+            for(let i=0; i<select.options.length; i++) {
+                if(select.options[i].text.includes(title.split(' ')[0])) {
+                    select.selectedIndex = i;
+                    break;
+                }
+            }
+            document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 報名表單驗證與成功提示
+        const regForm = document.getElementById('reg-form');
+        const alertModal = document.getElementById('alert-modal');
+
+        regForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // 簡易欄位檢查
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const itinerary = document.getElementById('itinerary-select').value;
+            const date = document.getElementById('date-select').value;
+
+            if(!name || !phone || !email || !itinerary || !date) {
+                alert('請完整填寫必填欄位！');
+                return;
+            }
+
+            // 顯示成功提示 Modal
+            document.getElementById('alert-title').textContent = "報名預約成功！";
+            document.getElementById('alert-msg').textContent = `感謝 ${name} 先生/小姐！我們已收到您的報名，將由專人寄送確認信與繳費資訊至 ${email}。`;
+            alertModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            regForm.reset();
+        });
+
+        function closeAlert() {
+            alertModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // 點擊彈窗外部關閉
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('itinerary-modal');
+            const alertM = document.getElementById('alert-modal');
+            if (e.target === modal) closeModal();
+            if (e.target === alertM) closeAlert();
+        });
+    </script>
+</body>
+</html>
